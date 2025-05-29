@@ -21,6 +21,20 @@ const Posts: CollectionConfig = {
         label: 'Author',
     },
     {
+        name: 'featuredImage',
+        type: 'upload',
+        label: 'Featured Image',
+        relationTo: 'media'
+    },
+    { 
+        name: 'tags',
+        type: 'array',
+        fields: [{
+            name: 'tag',
+            type: 'text',
+        }]
+    },
+    {
         name: 'createdAt',
         type: 'date',
         label: 'Created At',
@@ -29,10 +43,10 @@ const Posts: CollectionConfig = {
         },
     }
     ],
-    hooks:{
+    hooks: {
         beforeChange: [
-            async ({ data }) => {
-                if (!data.createdAt) {
+            async ({ data, operation }) => {
+                if (operation === 'create') {
                     data.createdAt = new Date()
                 }
                 return data

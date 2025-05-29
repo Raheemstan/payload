@@ -33,6 +33,79 @@ export default buildConfig({
     },
   }),
   sharp,
+  globals: [
+    {
+      slug: 'site-settings',
+      fields: [
+        {
+          name: 'siteTitle',
+          type: 'text',
+          required: true,
+        }, {
+          name: 'siteDescription',
+          type: 'textarea',
+          required: true,
+        },
+        {
+          name: 'siteImage',
+          type: 'upload',
+          relationTo: 'media'
+        },
+        {
+          name: 'contactEmail',
+          type: 'textarea',
+          required: true,
+        }, {
+          name: 'socialMediaLinks',
+          type: 'array',
+          fields: [
+            {
+              name: 'platform',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'url',
+              type: 'text',
+              required: true,
+            }
+          ]
+        }, {
+          name: 'maintainanceMode',
+          type: 'checkbox'
+        },
+        {
+          name: 'defaultLanguage',
+          type: 'select',
+          options: [
+            {
+              label: 'English',
+              value: 'en'
+            },
+            {
+              label: 'Spanish',
+              value: 'es'
+            }
+          ]
+        },
+        {
+          name: 'themeSettings',
+          type: 'group',
+          fields: [
+            {
+              name: 'primaryColor',
+              type: 'text'
+            },
+            {
+              name: 'fontFamily',
+              type: 'text'
+            }
+          ]
+        }
+
+      ]
+    }
+  ],
   plugins: [
     payloadCloudPlugin(),
     // storage-adapter-placeholder
