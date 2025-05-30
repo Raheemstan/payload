@@ -2,6 +2,7 @@ import { CollectionConfig } from "payload"
 
 const Posts: CollectionConfig = {
     slug: 'posts',
+    auth: true,
     fields: [{
         name: 'title',
         type: 'text',
@@ -26,7 +27,7 @@ const Posts: CollectionConfig = {
         label: 'Featured Image',
         relationTo: 'media'
     },
-    { 
+    {
         name: 'tags',
         type: 'array',
         fields: [{
